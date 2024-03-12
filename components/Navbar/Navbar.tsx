@@ -45,6 +45,17 @@ const Navbar = () => {
     }
   }
 
+  const openNotification = () => {
+    if (!notification) {
+      setNotification(true);
+      setDiscover(false);
+      setHelp(false);
+      setProfile(false);
+    } else {
+      setNotification(false);
+    }
+  }
+
 
   return (
     <div className="bg-gray-900">
@@ -63,9 +74,38 @@ const Navbar = () => {
         {/* END OF LEFT SECTION */}
         <div className="flex items-center">
           <p className="text-white cursor-pointer" onClick={(e) => openMenu(e)}>Discover</p>
-          <div className="ml-4">
-            <Discover />
-          </div>
+          {discover && (
+            <div className="">
+              <Discover />
+            </div>
+          )}
+        </div>
+        {/* Help Center */}
+        <div className="flex items-center">
+          <p className="text-white cursor-pointer" onClick={(e) => openMenu(e)}>Help Center</p>
+          {help && (
+            <div className="">
+              <HelpCenter />
+            </div>
+          )}
+        </div>
+        {/* Notification */}
+        <div className="flex items-center">
+          <MdNotifications className="text-white text-2xl cursor-pointer" onClick={() => openNotification()} />
+          {notification && <Notification />}
+        </div>
+        {/* CREATE BUTTON SECTION */}
+        <div className="flex items-center">
+          <Button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Create</Button>
+        </div>
+        {/* User Profile */}
+        <div className="flex items-center">
+          <Image
+            src={images.user1}
+            alt="Profile"
+            className="rounded-full w-10 h-10 mr-2"
+          />
+          {profile && <Profile />}
         </div>
       </div>
     </div>
