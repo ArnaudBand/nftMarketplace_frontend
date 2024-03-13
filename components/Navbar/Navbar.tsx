@@ -56,6 +56,25 @@ const Navbar = () => {
     }
   }
 
+  const openProfile = () => {
+    if (!profile) {
+      setProfile(true);
+      setDiscover(false);
+      setHelp(false);
+      setNotification(false);
+    } else {
+      setProfile(false);
+    }
+  }
+
+  const openSidebar = () => {
+    if (!sidebar) {
+      setSidebar(true);
+    } else {
+      setSidebar(false);
+    }
+  }
+
 
   return (
     <div className="bg-gray-900">
@@ -104,9 +123,22 @@ const Navbar = () => {
             src={images.user1}
             alt="Profile"
             className="rounded-full w-10 h-10 mr-2"
+            onClick={() => openProfile()}
           />
           {profile && <Profile />}
         </div>
+        {/* MENU BUTTON */}
+        <div className="flex items-center">
+          <CgMenuRight className="text-white text-2xl cursor-pointer" onClick={() => openSidebar()} />
+        </div>
+        {/* SIDEBAR COMPONENT */}
+        <div>
+          {sidebar && (
+            <Sidebar
+              setOpenSideMenu={setOpenSideMenu}
+            />
+          )}
+          </div>
       </div>
     </div>
 
