@@ -2,6 +2,8 @@ import React from 'react'
 import Link from "next/link";
 
 const HelpCenter = () => {
+
+  // HELP CENTER MENU
   const helpCenter = [
     {name: "About", link: "about"},
     {name: "Contact Us", link: "contact-us"},
