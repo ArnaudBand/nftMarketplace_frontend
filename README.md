@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NFT Marketplace Frontend
+
+Welcome to the NFT Marketplace Frontend repository! This project is the frontend implementation of a decentralized marketplace for buying, selling, and trading non-fungible tokens (NFTs).
+
+## Features
+
+- **User Authentication**: Secure authentication and authorization for users.
+- **NFT Listings**: Browse, search, and filter NFT listings.
+- **Wallet Integration**: Connect your wallet to buy and sell NFTs.
+- **Auction Support**: Participate in auctions for rare and unique NFTs.
+- **Profile Management**: Manage your profile and track your NFT transactions.
+
+## Technologies Used
+
+- **React.js**: Frontend library for building user interfaces.
+- **Next.js**: React framework for server-rendered applications.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Web3.js**: Ethereum JavaScript API for interacting with smart contracts.
+- **Solidity**: Smart contract language for Ethereum.
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy up and running, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/your-username/nft-marketplace-frontend.git
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies:**
+   ```sh
+   cd nft-marketplace-frontend
+   npm install
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Start the development server:**
+   ```sh
+   npm run dev
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. **Open your browser:**
+   Visit `http://localhost:3000` to see the app running locally.
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Contributions are welcome! Please fork the repository and create a pull request with your changes. For major changes, please open an issue first to discuss what you would like to change.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.

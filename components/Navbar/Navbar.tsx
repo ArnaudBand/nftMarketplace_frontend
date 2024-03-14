@@ -75,6 +75,10 @@ const Navbar = () => {
     }
   }
 
+  const setOpenSideMenu = (value: boolean) => {
+    setSidebar(value);
+  }
+
 
   return (
     <div className="bg-gray-900">
@@ -122,7 +126,7 @@ const Navbar = () => {
           <Image
             src={images.user1}
             alt="Profile"
-            className="rounded-full w-10 h-10 mr-2"
+            className="rounded-full w-10 h-10 mr-2 cursor-pointer"
             onClick={() => openProfile()}
           />
           {profile && <Profile />}
