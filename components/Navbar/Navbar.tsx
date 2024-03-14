@@ -75,6 +75,10 @@ const Navbar = () => {
     }
   }
 
+  const setOpenSideMenu = (value: boolean) => {
+    setSidebar(value);
+  }
+
 
   return (
     <div className="bg-gray-900">
