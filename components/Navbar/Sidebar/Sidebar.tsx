@@ -20,13 +20,10 @@ interface SidebarProps {
   setOpenSideMenu: (value: boolean) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({
-  setOpenSideMenu
-}) => {
+const Sidebar: React.FC<SidebarProps> = ({ setOpenSideMenu }) => {
   const [openDiscover, setOpenDiscover] = useState<boolean>(false);
   const [openHelp, setOpenHelp] = useState<boolean>(false);
 
-  // DISCOVER NAVIGATION MENU
   const discover = [
     { name: "Collection", link: "collection" },
     { name: "Search", link: "search" },
@@ -37,12 +34,6 @@ const Sidebar: React.FC<SidebarProps> = ({
     { name: "Blog", link: "blog" }
   ];
 
-  const openDiscoverMenu = () => {
-    setOpenDiscover(!openDiscover);
-    setOpenHelp(false);
-  }
-
-  // HELP CENTER MENU
   const helpCenter = [
     { name: "About", link: "about" },
     { name: "Contact Us", link: "contact-us" },
@@ -51,19 +42,13 @@ const Sidebar: React.FC<SidebarProps> = ({
     { name: "Subscription", link: "subscription" },
   ];
 
-
-  const openHelpMenu = () => {
-    setOpenHelp(!openHelp);
-    setOpenDiscover(false);
-  }
-
   const closeSidebar = () => {
     setOpenSideMenu(false);
   }
 
   return (
-    <div className="p-4 absolute top-10 right-2 bg-black/50 shadow-lg mt-8">
-      <div className="cursor-pointer absolute top-2 right-2 text-white/50 transition hover:text-white/30 p-4 fill-current" onClick={() => closeSidebar()}>
+    <div className="p-4 absolute top-10 right-2 bg-black/50 shadow-lg mt-8 rounded-lg translate-y-2 transition">
+      <div className="cursor-pointer absolute top-2 right-2 text-white/50 transition hover:text-white/30 p-4 fill-current animate-spin" onClick={closeSidebar}>
         <CircleX />
       </div>
       <div className="text-center">
@@ -80,27 +65,27 @@ const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
       <div className="mt-8">
-        <div className="flex justify-between items-center cursor-pointer" onClick={() => openDiscoverMenu()}>
+        <div className="flex justify-between items-center cursor-pointer" onClick={() => setOpenDiscover(!openDiscover)}>
           <p className="text-lg font-semibold">Discover</p>
-          <TiArrowSortedDown className="text-lg" />
+          {openDiscover ? <TiArrowSortedUp className="text-lg" /> : <TiArrowSortedDown className="text-lg" />}
         </div>
         {openDiscover && (
           <div className="mt-4">
             {discover.map((el, i) => (
-              <Link key={i + 1} href={{ pathname: `${el.link}` }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:text-gray-500">
+              <Link key={i + 1} href={{ pathname: `${el.link}` }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:text-gray-500 hover:rounded-lg">
                 {el.name}
               </Link>
             ))}
           </div>
         )}
-        <div className="flex justify-between items-center cursor-pointer mt-4" onClick={() => openHelpMenu()}>
+        <div className="flex justify-between items-center cursor-pointer mt-4" onClick={() => setOpenHelp(!openHelp)}>
           <p className="text-lg font-semibold">Help Center</p>
-          <TiArrowSortedDown className="text-lg" />
+          {openHelp ? <TiArrowSortedUp className="text-lg" /> : <TiArrowSortedDown className="text-lg" />}
         </div>
         {openHelp && (
           <div className="mt-4">
             {helpCenter.map((el, i) => (
-              <Link key={i + 1} href={{ pathname: `${el.link}` }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:text-gray-500">
+              <Link key={i + 1} href={{ pathname: `${el.link}` }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:text-gray-500 hover:rounded-lg">
                 {el.name}
               </Link>
             ))}
@@ -118,7 +103,6 @@ const Sidebar: React.FC<SidebarProps> = ({
         >Connect Wallet</Button>
       </div>
     </div>
-
   )
 }
 

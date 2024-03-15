@@ -10,6 +10,7 @@ import { Discover, HelpCenter, Notification, Profile, Sidebar } from './index';
 import images from '@/img';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
+import ButtonNFT from '../Button/ButtonNFT';
 
 interface NavbarState {
   discover: boolean;
@@ -33,7 +34,7 @@ const Navbar = () => {
       ...prevState,
       [menu]: !prevState[menu],
     }));
-
+  
     // Close other menus
     Object.keys(isOpen).forEach((key) => {
       if (key !== menu) {
@@ -44,11 +45,12 @@ const Navbar = () => {
       }
     });
   };
+  
 
   const { discover, help, notification, profile, sidebar } = isOpen;
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gray-900 py-1.5">
       <div className="container mx-auto px-4 py-2 flex items-center justify-between">
         <div className="flex items-center">
           <div>
@@ -65,7 +67,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <p className="text-white cursor-pointer" onClick={() => handleMenuToggle('discover')}>Discover</p>
           {discover && (
-            <div className="">
+            <div>
               <Discover />
             </div>
           )}
@@ -74,7 +76,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <p className="text-white cursor-pointer" onClick={() => handleMenuToggle('help')}>Help Center</p>
           {help && (
-            <div className="">
+            <div>
               <HelpCenter />
             </div>
           )}
@@ -86,7 +88,7 @@ const Navbar = () => {
         </div>
         {/* CREATE BUTTON SECTION */}
         <div className="flex items-center">
-          <Button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Create</Button>
+          <ButtonNFT btnName="Create NFT" handleClick={() => console.log('Create NFT')} />
         </div>
         {/* User Profile */}
         <div className="flex items-center">
@@ -106,7 +108,7 @@ const Navbar = () => {
         <div>
           {sidebar && (
             <Sidebar
-              setOpenSideMenu={setIsOpen}
+              setOpenSideMenu={(value: boolean) => setIsOpen(value)}
             />
           )}
         </div>
