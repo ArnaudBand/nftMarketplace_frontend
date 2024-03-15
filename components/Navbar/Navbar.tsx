@@ -1,87 +1,56 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { MdNotifications } from 'react-icons/md';
 import { BsSearch } from 'react-icons/bs';
 import { CgMenuLeft, CgMenuRight } from 'react-icons/cg';
-
 import { Discover, HelpCenter, Notification, Profile, Sidebar } from './index';
-import images from "@/img";
+import images from '@/img';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
+import ButtonNFT from '../Button/ButtonNFT';
+
+interface NavbarState {
+  discover: boolean;
+  help: boolean;
+  notification: boolean;
+  profile: boolean;
+  sidebar: boolean;
+}
 
 const Navbar = () => {
-  const [discover, setDiscover] = useState<boolean>(false);
-  const [help, setHelp] = useState<boolean>(false);
-  const [notification, setNotification] = useState<boolean>(false);
-  const [profile, setProfile] = useState<boolean>(false);
-  const [sidebar, setSidebar] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<NavbarState>({
+    discover: false,
+    help: false,
+    notification: false,
+    profile: false,
+    sidebar: false,
+  });
 
-  const openMenu = (e: any) => {
-    const btnText = e.target.innerText;
-    if (btnText === 'Discover') {
-      setDiscover(!discover);
-      setHelp(false);
-      setNotification(false);
-      setProfile(false);
-    } else if (btnText === 'Help Center') {
-      setDiscover(false);
-      setHelp(!help);
-      setNotification(false);
-      setProfile(false);
-    } else if (btnText === 'Notification') {
-      setDiscover(false);
-      setHelp(false);
-      setNotification(!notification);
-      setProfile(false);
-    } else if (btnText === 'Profile') {
-      setDiscover(false);
-      setHelp(false);
-      setNotification(false);
-      setProfile(!profile);
-    }
-  }
+  const handleMenuToggle = (menu: keyof NavbarState) => {
+    setIsOpen((prevState) => ({
+      ...prevState,
+      [menu]: !prevState[menu],
+    }));
+  
+    // Close other menus
+    Object.keys(isOpen).forEach((key) => {
+      if (key !== menu) {
+        setIsOpen((prevState) => ({
+          ...prevState,
+          [key]: false,
+        }));
+      }
+    });
+  };
+  
 
-  const openNotification = () => {
-    if (!notification) {
-      setNotification(true);
-      setDiscover(false);
-      setHelp(false);
-      setProfile(false);
-    } else {
-      setNotification(false);
-    }
-  }
-
-  const openProfile = () => {
-    if (!profile) {
-      setProfile(true);
-      setDiscover(false);
-      setHelp(false);
-      setNotification(false);
-    } else {
-      setProfile(false);
-    }
-  }
-
-  const openSidebar = () => {
-    if (!sidebar) {
-      setSidebar(true);
-    } else {
-      setSidebar(false);
-    }
-  }
-
-  const setOpenSideMenu = (value: boolean) => {
-    setSidebar(value);
-  }
-
+  const { discover, help, notification, profile, sidebar } = isOpen;
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gray-900 py-1.5">
       <div className="container mx-auto px-4 py-2 flex items-center justify-between">
         <div className="flex items-center">
           <div>
@@ -96,30 +65,30 @@ const Navbar = () => {
         </div>
         {/* END OF LEFT SECTION */}
         <div className="flex items-center">
-          <p className="text-white cursor-pointer" onClick={(e) => openMenu(e)}>Discover</p>
+          <p className="text-white cursor-pointer" onClick={() => handleMenuToggle('discover')}>Discover</p>
           {discover && (
-            <div className="">
+            <div>
               <Discover />
             </div>
           )}
         </div>
         {/* Help Center */}
         <div className="flex items-center">
-          <p className="text-white cursor-pointer" onClick={(e) => openMenu(e)}>Help Center</p>
+          <p className="text-white cursor-pointer" onClick={() => handleMenuToggle('help')}>Help Center</p>
           {help && (
-            <div className="">
+            <div>
               <HelpCenter />
             </div>
           )}
         </div>
         {/* Notification */}
         <div className="flex items-center">
-          <MdNotifications className="text-white text-2xl cursor-pointer" onClick={() => openNotification()} />
+          <MdNotifications className="text-white text-2xl cursor-pointer" onClick={() => handleMenuToggle('notification')} />
           {notification && <Notification />}
         </div>
         {/* CREATE BUTTON SECTION */}
         <div className="flex items-center">
-          <Button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Create</Button>
+          <ButtonNFT btnName="Create NFT" handleClick={() => console.log('Create NFT')} />
         </div>
         {/* User Profile */}
         <div className="flex items-center">
@@ -127,26 +96,25 @@ const Navbar = () => {
             src={images.user1}
             alt="Profile"
             className="rounded-full w-10 h-10 mr-2 cursor-pointer"
-            onClick={() => openProfile()}
+            onClick={() => handleMenuToggle('profile')}
           />
           {profile && <Profile />}
         </div>
         {/* MENU BUTTON */}
         <div className="flex items-center">
-          <CgMenuRight className="text-white text-2xl cursor-pointer" onClick={() => openSidebar()} />
+          <CgMenuRight className="text-white text-2xl cursor-pointer" onClick={() => handleMenuToggle('sidebar')} />
         </div>
         {/* SIDEBAR COMPONENT */}
         <div>
           {sidebar && (
             <Sidebar
-              setOpenSideMenu={setOpenSideMenu}
+              setOpenSideMenu={(value: boolean) => setIsOpen(value)}
             />
           )}
-          </div>
+        </div>
       </div>
     </div>
-
-  )
-}
+  );
+};
 
 export default Navbar;
