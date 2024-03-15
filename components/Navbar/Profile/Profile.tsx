@@ -40,20 +40,18 @@ const Profile = () => {
                 <Link href={{ pathname: '/edit-profile' }}>Edit Profile</Link>
               </p>
             </div>
-          </div>
-          <div className="flex flex-col gap-y-3 ml-4">
-            <div className="flex items-center text-white/70 gap-x-2">
-              <MdHelpCenter />
-              <p>
-                <Link href={{ pathname: '/help' }}>Help Center</Link>
-              </p>
-            </div>
-            <div className="flex items-center text-white/70 gap-x-2">
-              <TbDownload />
-              <p>
-                <Link href={{ pathname: '/disconnet' }}>Disconnet</Link>
-              </p>
-            </div>
+              <div className="flex items-center text-white/70 gap-x-2">
+                <MdHelpCenter />
+                <p>
+                  <Link href={{ pathname: '/help' }}>Help Center</Link>
+                </p>
+              </div>
+              <div className="flex items-center text-white/70 gap-x-2">
+                <TbDownload />
+                <p>
+                  <Link href={{ pathname: '/disconnet' }}>Disconnet</Link>
+                </p>
+              </div>
           </div>
           </div>
         </div>
