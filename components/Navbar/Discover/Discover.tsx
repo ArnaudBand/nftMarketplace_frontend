@@ -1,27 +1,24 @@
 import Link from 'next/link';
 
-const Discover = () => {
-  // DISCOVER NAVIGATION MENU
-  const discover = [
-    { name: "Collection", link: "collection" },
-    { name: "Search", link: "search" },
-    { name: "Author Profile", link: "author-profile" },
-    { name: "NFT Details", link: "NFT-details" },
-    { name: "Account Setting", link: "account-setting" },
-    { name: "Connect Wallet", link: "connect-wallet" },
-    { name: "Blog", link: "blog" }
-  ];
+interface DiscoverItem {
+  name: string;
+  link: string;
+}
 
+interface DiscoverProps {
+  items: DiscoverItem[];
+  className?: string;
+}
+
+const Discover: React.FC<DiscoverProps> = ({ items, className = '' }) => {
   return (
-
-    <div className="bg-black shadow-md absolute rounded-lg mt-8 w-48">
-      {discover.map((el, i) => (
-        <Link key={i + 1} href={{ pathname: `${el.link}` }} className="block px-4 py-2 text-white/80 hover:bg-gray-200 hover:text-gray-500">
-          {el.name}
+    <div className={`bg-black shadow-md absolute rounded-lg mt-8 w-48 ${className}`}>
+      {items.map((el, i) => (
+        <Link key={i + 1} href={{ pathname: `${el.link}` }} passHref className="block px-4 py-2 text-white/80 hover:bg-gray-200 hover:text-gray-500">
+            {el.name}
         </Link>
       ))}
     </div>
-
   );
 };
 
