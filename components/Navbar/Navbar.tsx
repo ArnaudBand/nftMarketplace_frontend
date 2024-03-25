@@ -1,8 +1,9 @@
 "use client";
 
+// import {discover, helpCenter} from '@/components/links/Usefull_link';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { MdNotifications } from 'react-icons/md';
 import { BsSearch } from 'react-icons/bs';
 import { CgMenuLeft, CgMenuRight } from 'react-icons/cg';
@@ -64,10 +65,10 @@ const Navbar = () => {
           </div>
         </div>
         {/* END OF LEFT SECTION */}
-        <div className="flex items-center">
+        <div className=" flex items-center">
           <p className="text-white cursor-pointer" onClick={() => handleMenuToggle('discover')}>Discover</p>
           {discover && (
-            <div>
+            <div className="absolute top-8 bg-black shadow-md mt-8 w-48 rounded-lg">
               <Discover />
             </div>
           )}
@@ -76,7 +77,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <p className="text-white cursor-pointer" onClick={() => handleMenuToggle('help')}>Help Center</p>
           {help && (
-            <div>
+            <div className="bg-black shadow-md absolute top-8 mt-8 w-48 rounded-lg">
               <HelpCenter />
             </div>
           )}
